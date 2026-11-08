@@ -21,3 +21,10 @@ function divide() {
   let operator = null;
   let secondOperand = null;
 }
+
+function operate(firstNum, operator, secondNum) {
+  if (firstNum && operator === "+" && secondNum) {
+    return firstNum + secondNum;
+  }
+  return operate;
+}
