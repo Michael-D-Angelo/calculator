@@ -1,30 +1,22 @@
-function add() {
-  let firstOperand = null;
-  let operator = null;
-  let secondOperand = null;
+let firstOperand = null;
+let operator = null;
+let secondOperand = null;
+
+function add(a, b) {
+  return a + b;
 }
 
-function subtract() {
-  let firstOperand = null;
-  let operator = null;
-  let secondOperand = null;
-}
+function subtract() {}
 
-function multiply() {
-  let firstOperand = null;
-  let operator = null;
-  let secondOperand = null;
-}
+function multiply() {}
 
-function divide() {
-  let firstOperand = null;
-  let operator = null;
-  let secondOperand = null;
-}
+function divide() {}
 
 function operate(firstNum, operator, secondNum) {
-  if (firstNum && operator === "+" && secondNum) {
-    return firstNum + secondNum;
+  if (firstNum === null || operator === null || secondNum === null) {
+    return null;
+  } else if (operator === "+") {
+    return add(firstNum, secondNum);
   }
-  return operate;
+  return null;
 }
