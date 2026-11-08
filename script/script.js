@@ -18,16 +18,18 @@ function divide(a, b) {
   return a / b;
 }
 
-function operate(firstNum, operator, secondNum) {
-  if (firstNum === null || operator === null || secondNum === null) {
+function operate(firstNum, operation, secondNum) {
+  if (firstNum === null || operation === null || secondNum === null) {
     return null;
-  } else if (operator === "+") {
+  } else if (operation === ":" && secondNum === 0) {
+    return "nice try";
+  } else if (operation === "+") {
     return add(firstNum, secondNum);
-  } else if (operator === "-") {
+  } else if (operation === "-") {
     return subtract(firstNum, secondNum);
-  } else if (operator === "x") {
+  } else if (operation === "x") {
     return multiply(firstNum, secondNum);
-  } else if (operator === ":") {
+  } else if (operation === ":") {
     return divide(firstNum, secondNum);
   }
   return null;
