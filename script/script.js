@@ -27,9 +27,9 @@ function operate(firstNum, operation, secondNum) {
     return add(firstNum, secondNum);
   } else if (operation === "-") {
     return subtract(firstNum, secondNum);
-  } else if (operation === "x") {
+  } else if (operation === "*") {
     return multiply(firstNum, secondNum);
-  } else if (operation === ":") {
+  } else if (operation === "/") {
     return divide(firstNum, secondNum);
   }
   return null;
