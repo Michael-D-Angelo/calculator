@@ -1,45 +1,159 @@
+:root {
+  color-scheme: dark;
+  /* Background */
+  --color-background: #0b1220;
+  --color-display: #111827;
+  /* Buttons */
+  --color-button: #1e293b;
+  --color-button-hover: #334155;
+  --color-button-active: #475569;
+  /* Operator */
+  --color-operator: #164e63;
+  --color-operator-hover: #155e75;
+  --color-operator-active: #0e7490;
+  --color-operator-text: #cffafe;
+  /* Equals */
+  --color-equals: #15803d;
+  --color-equals-hover: #166534;
+  --color-equals-active: #14532d;
+  /* Clear */
+  --color-clear: #7f1d1d;
+  --color-clear-hover: #991b1b;
+  --color-clear-active: #b91c1c;
+  /* Delete */
+  --color-delete: #78350f;
+  --color-delete-hover: #92400e;
+  --color-delete-active: #b45309;
+  /* Typography */
+  --color-text: #f8fafc;
+  --color-text-secondary: #94a3b8;
+  /* Border & Focus */
+  --color-border: rgba(148, 163, 184, 0.16);
+  --color-focus: #67e8f9;
+}
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-  font-family:
-    National Park,
-    sans-serif;
+  font-family: "National Park", sans-serif;
   font-weight: 500;
 }
 
 body {
-  padding: 0;
   margin: 0;
-  background: linear-gradient(to right, #00ff6c, #00aaff);
+  padding: 24px;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  color: var(--color-text);
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(34, 211, 238, 0.12),
+      transparent 40%
+    ),
+    var(--color-background);
 }
 
 .calculator-grid {
+  width: min(100%, 420px);
   display: grid;
-  justify-content: center;
-  align-content: center;
-  min-height: 100vh;
-  width: min(100%, 400px);
-  margin-inline: auto;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows:
+    minmax(140px, auto)
+    repeat(5, minmax(64px, 84px));
+  gap: 10px;
 }
 
 .calculator-grid > button {
+  min-width: 0;
+  color: var(--color-text);
+  background: var(--color-button);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  font: inherit;
+  font-size: clamp(1.25rem, 5vw, 1.75rem);
+  font-weight: 600;
   cursor: pointer;
-  font-size: 2rem;
-  border: 1px solid white;
-  outline: none;
-  background-color: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    transform 100ms ease,
+    box-shadow 150ms ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .calculator-grid > button:hover {
-  background-color: rgba(255, 255, 255, 0.9);
+  background: var(--color-button-hover);
+  border-color: rgba(148, 163, 184, 0.35);
+  transform: translateY(-1px);
 }
 
 .calculator-grid > button:focus-visible {
-  outline: 3px solid green;
-  outline-offset: 2px;
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+  z-index: 1;
+}
+
+.calculator-grid > button[data-operation] {
+  background: var(--color-operator);
+  color: var(--color-operator-text);
+}
+
+.calculator-grid > button[data-operation]:hover {
+  background: var(--color-operator-hover);
+}
+
+.calculator-grid > button[data-operation]:active {
+  background: var(--color-operator-active);
+}
+
+.calculator-grid > button[data-equals] {
+  background: var(--color-equals);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.calculator-grid > button[data-equals]:hover {
+  background: var(--color-equals-hover);
+}
+
+.calculator-grid > button[data-equals]:active {
+  background: var(--color-equals-active);
+}
+
+.calculator-grid > button[data-all-clear] {
+  background: var(--color-clear);
+  color: #fee2e2;
+}
+
+.calculator-grid > button[data-all-clear]:hover {
+  background: var(--color-clear-hover);
+}
+
+.calculator-grid > button[data-all-clear]:active {
+  background: var(--color-clear-active);
+}
+
+.calculator-grid > button[data-delete] {
+  background: var(--color-delete);
+  color: #ffedd5;
+}
+
+.calculator-grid > button[data-delete]:hover {
+  background: var(--color-delete-hover);
+}
+
+.calculator-grid > button[data-delete]:active {
+  background: var(--color-delete-active);
+}
+
+.calculator-grid > button:active {
+  background: var(--color-button-active);
+  transform: translateY(1px);
+  box-shadow: none;
 }
 
 .span-two {
@@ -48,22 +162,63 @@ body {
 
 .output {
   grid-column: 1 / -1;
-  background-color: rgba(0, 0, 0, 0.75);
   display: flex;
-  align-items: flex-end;
-  justify-content: space-around;
   flex-direction: column;
-  padding: 10px;
-  word-wrap: break-word;
-  overflow-wrap: anywhere;
+  justify-content: space-between;
+  align-items: flex-end;
+  min-width: 0;
+  padding: 18px 20px;
+  background: var(--color-display);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
 }
 
 .output .previous-operand {
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 1.5rem;
+  width: 100%;
+  color: var(--color-text-secondary);
+  font-size: 1.25rem;
+  text-align: right;
+  overflow-wrap: anywhere;
+  min-height: 1.5em;
 }
 
 .output .current-operand {
-  color: white;
+  width: 100%;
+  color: var(--color-text);
   font-size: 2.5rem;
+  line-height: 1.2;
+  text-align: right;
+  overflow-wrap: anywhere;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 360px) {
+  body {
+    padding: 14px;
+  }
+
+  .calculator-grid {
+    gap: 8px;
+  }
+
+  .output {
+    padding: 14px;
+  }
+
+  .calculator-grid > button {
+    border-radius: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .calculator-grid > button {
+    transition: none;
+  }
+
+  .calculator-grid > button:hover,
+  .calculator-grid > button:active {
+    transform: none;
+  }
 }
