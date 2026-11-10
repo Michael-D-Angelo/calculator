@@ -2,6 +2,13 @@ let firstOperand = null;
 let operator = null;
 let secondOperand = null;
 
+const previousNumber = document.querySelectorAll(`[data-number]`);
+previousNumber.forEach((numbersButton) => {
+  numbersButton.addEventListener("click", () => {
+    console.log(Number(event.target.dataset.number));
+  });
+});
+
 function add(a, b) {
   return a + b;
 }
