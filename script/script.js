@@ -9,6 +9,11 @@ previousNumber.forEach((numbersButton) => {
   });
 });
 
+const addOperator = document.querySelector(`[data-operation='+']`);
+const subtractOperator = document.querySelector(`[data-operation='-']`);
+const divideOperator = document.querySelector(`[data-operation='/']`);
+const multiplyOperator = document.querySelector(`[data-operation='*']`);
+
 function add(a, b) {
   return a + b;
 }
