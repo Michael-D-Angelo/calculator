@@ -13,6 +13,9 @@ const addOperator = document.querySelector(`[data-operation='+']`);
 const subtractOperator = document.querySelector(`[data-operation='-']`);
 const divideOperator = document.querySelector(`[data-operation='/']`);
 const multiplyOperator = document.querySelector(`[data-operation='*']`);
+const allClearBtn = document.querySelector(`[data-all-clear]`);
+const deleteBtn = document.querySelector(`[data-delete]`);
+const equalsBtn = document.querySelector(`[data-equals]`);
 
 function add(a, b) {
   return a + b;
