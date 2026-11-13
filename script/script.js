@@ -3,30 +3,7 @@ let operator = null;
 let secondOperand = null;
 
 const numbersBtn = document.querySelectorAll(`[data-number]`);
-numbersBtn.forEach((numbersButton) => {
-  numbersButton.addEventListener("click", () => {
-    const numbers = event.target.dataset.number;
-    const displayNumbers = (currentOperandDisplay.textContent += `${numbers}`);
-    if (
-      addOperator.addEventListener("click", () => {
-        firstOperand = Number(displayNumbers);
-        previousOperandDisplay.textContent = `${displayNumbers} +`;
-        currentOperandDisplay.textContent = "";
-        operator = `+`;
-      })
-    ) {
-    }
-    secondOperand = Number(displayNumbers);
-    if (
-      equalsBtn.addEventListener("click", () => {
-        const operation = operate(firstOperand, operator, secondOperand);
-        currentOperandDisplay.textContent = `${operation}`;
-        previousOperandDisplay.textContent = "";
-      })
-    ) {
-    }
-  });
-});
+
 const addOperator = document.querySelector(`[data-operation='+']`);
 const subtractOperator = document.querySelector(`[data-operation='-']`);
 const divideOperator = document.querySelector(`[data-operation='/']`);
@@ -71,3 +48,13 @@ function operate(firstNum, operation, secondNum) {
   }
   return null;
 }
+
+numbersBtn.forEach((numbers) => {
+  numbers.addEventListener("click", (e) => {
+    // Display current number
+    const firstNum =
+      (currentOperandDisplay.textContent += `${e.target.dataset.number}`);
+    // Whilst assign to firstOperand state
+    firstOperand = Number(firstNum);
+  });
+});
