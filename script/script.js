@@ -51,10 +51,14 @@ function operate(firstNum, operation, secondNum) {
 
 numbersBtn.forEach((numbers) => {
   numbers.addEventListener("click", (e) => {
-    // Display current number
-    const firstNum =
-      (currentOperandDisplay.textContent += `${e.target.dataset.number}`);
-    // Whilst assign to firstOperand state
-    firstOperand = Number(firstNum);
+    // Replace old commas and append to numbers
+    const rawString =
+      currentOperandDisplay.textContent.replace(/,/g, "") +
+      e.target.dataset.number;
+    const firstNum = Number(rawString);
+    // Display numbers
+    currentOperandDisplay.textContent = firstNum.toLocaleString("en-US");
+    // Assign numbers to firstOperand state
+    firstOperand = firstNum;
   });
 });
